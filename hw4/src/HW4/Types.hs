@@ -6,13 +6,24 @@ module HW4.Types
   , Expr (..)
   , Prim (..)
   , State (..)
+  , mapExcept
+  , mapAnnotated
   ) where
 
 data Except e a = Error e | Success a
   deriving Show
 
+mapExcept :: (a -> b) -> (Except e a -> Except e b)
+mapExcept _ (Error er)         = Error er
+mapExcept func (Success value) = Success $ func value
+
 data Annotated e a = a :# e
   deriving Show
+
+infix 0 :#
+
+mapAnnotated :: (a -> b) -> (Annotated e a -> Annotated e b)
+mapAnnotated func (value :# annotation) = func value :# annotation
 
 data State s a = S { runS :: s -> Annotated s a }
 

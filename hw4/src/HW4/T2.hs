@@ -1,4 +1,4 @@
-{-# LANGUAGE DerivingStrategies #-}
+{-# LANGUAGE DerivingStrategies         #-}
 {-# LANGUAGE GeneralisedNewtypeDeriving #-}
 
 module HW4.T2
@@ -9,12 +9,12 @@ module HW4.T2
   , parseExpr
   ) where
 
-import Numeric.Natural (Natural)
-import Control.Applicative
-import Control.Monad
+import           Control.Applicative
+import           Control.Monad
+import           Numeric.Natural     (Natural)
 
-import HW4.Types
-import HW4.T1 (ExceptState(..))
+import           HW4.T1              (ExceptState (..))
+import           HW4.Types
 
 data ParseError = ErrorAtPos Natural
   deriving Show
